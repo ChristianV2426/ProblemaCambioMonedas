@@ -19,9 +19,7 @@ Sea $m[i, j]$ el mínimo número de monedas necesario para alcanzar la cantidad 
 $$m[i, j] =
 \begin{cases} 
     \frac{j}{a_i} & \ \text{si} \ j \ge a_i \wedge (j \ \text{mod} \ a_i) = 0 \\
-
     min_{0  \le \ k \ \le  \frac{j}{a_i}} \{ k + m[i-1, j -  (k * a_i)]\} & \ \text{si} \ j \gt a_i \wedge (j \ \text{mod} \ a_i) \ne 0 \\
-
     m[i-1, j] & \ \text{si} \ j < a_i
 \end{cases}$$
 
