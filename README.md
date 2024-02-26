@@ -24,5 +24,4 @@ $$m[i, j] =
 \end{cases}$$
 
 **3) y 4) Cálculo del valor de la solución óptima y su construcción (algoritmo):**
-
 Como la implementación recursiva de $m[i, j]$ generaría un algoritmo con complejidad exponencial, entonces se plantea la solución con programación dinámica que involucre memorización de soluciones óptimas de subproblemas más pequeños. El archivo CambioMonedas.py plantea una aproximación bottom-up.
