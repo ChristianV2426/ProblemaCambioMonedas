@@ -16,8 +16,14 @@ La solución óptima al problema original $cambio(a_{1n}, \ p)$ pasa por la solu
 **2) Definición recursiva del valor de la solución óptima:**
 Sea $m[i, j]$ el mínimo número de monedas necesario para alcanzar la cantidad $j$ a partir de las denominaciones $a_{1i}$. Entonces teniendo en cuenta la subestructura óptima del problema, $m[i, j]$ se puede definir recursivamente como:
 
-$$m[i, j] =\begin{cases} 1 & \ \text{si} \ a_i = j \\
-min_{0  \le \ k \ \le  \frac{j}{a_i}} \{ k + m[i-1, j -  (k * a_i)]\} & \ \text{si} \ a_i \ne j \end{cases}$$
+$$m[i, j] =
+\begin{cases} 
+    \frac{j}{a_i} & \ \text{si} \ j \ge a_i \wedge (j \ \text{mod} \ a_i) = 0 \\
+
+    min_{0  \le \ k \ \le  \frac{j}{a_i}} \{ k + m[i-1, j -  (k * a_i)]\} & \ \text{si} \ j \gt a_i \wedge (j \ \text{mod} \ a_i) \ne 0 \\
+
+    m[i-1, j] & \ \text{si} \ j < a_i
+\end{cases}$$
 
 **3) y 4) Cálculo del valor de la solución óptima y su construcción (algoritmo):**
 

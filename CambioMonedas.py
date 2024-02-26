@@ -11,25 +11,27 @@ def cambio_monedas(a, p):
     
     for i in range(1, n):
         for j in range(p+1):
-            if a[i] == j:
-                m[i][j] = 1
-                s[i][j] = 1
-                continue
-
-            for k in range(j//a[i]+1): # Complejidad O(n*p^2)
-                q = k + m[i-1][j - k*a[i]]
-                
-                if q < m[i][j]:
-                    m[i][j] = q
-                    s[i][j] = k
-
-
+            if ((j >= a[i]) and (j % a[i] == 0)):
+                m[i][j] = j // a[i]
+                s[i][j] = j // a[i]
+            
+            elif (j > a[i]):
+                for k in range(j//a[i]+1): # Complejidad O(n*p^2)
+                    q = k + m[i-1][j - k*a[i]]
+                    
+                    if q < m[i][j]:
+                        m[i][j] = q
+                        s[i][j] = k
+            
+            else: # j < a[i]
+                m[i][j] = m[i-1][j]
+                s[i][j] = 0
+            
     for i in range(n-1, -1, -1): # Construcción de la solución
         resultado[i] = s[i][p]
 
         if resultado[i] == float('inf'):
-            print("El problema no tiene solución", i, p)
-            return
+            return "No hay solución"
         
         p -= int(resultado[i] * a[i])
     
